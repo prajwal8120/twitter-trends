@@ -2,7 +2,6 @@ pipeline{
     agent {
         label 'slave-java'
     }
-
     tools {
         maven 'M2_HOME'
     }
