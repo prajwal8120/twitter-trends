@@ -15,8 +15,10 @@ pipeline{
                 echo "<----------Build completed---------->"
             }
         }
-        
-        stage('Sonar Analysis'){
+        stage ("Sonar Analysis") {
+            environment {
+               scannerHome = tool 'sonar-scanner'
+            }
                 steps {
                 echo '<--------------- Sonar Analysis started --------------->'
                 withSonarQubeEnv('sonar-cloud') {
