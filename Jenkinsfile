@@ -1,3 +1,4 @@
+def registry  = 'https://admirals.jfrog.io'
 pipeline{
     agent {
         label 'slave-java'
@@ -14,5 +15,15 @@ pipeline{
                 echo "<----------Build completed---------->"
             }
         }
+        
+        stage('Sonar Analysis'){
+                steps {
+                echo '<--------------- Sonar Analysis started --------------->'
+                withSonarQubeEnv('sonar-cloud') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }    
+                echo '<--------------- Sonar Analysis stopped  --------------->'
+            }   
+        }    
     }
 }
