@@ -1,4 +1,6 @@
+def imageName = 'admirals.jfrog.io/tycoon-doc-docker/valaxy'
 def registry  = 'https://admirals.jfrog.io'
+def version = '2.0.4'
 pipeline{
     agent {
         label 'slave-java'
@@ -67,6 +69,28 @@ pipeline{
                 
                 }
             }   
+        }
+
+         stage(" Docker Build ") {
+          steps {
+            script {
+               echo '<--------------- Docker Build Started --------------->'
+               app = docker.build(imageName+":"+version)
+               echo '<--------------- Docker Build Ends --------------->'
+            }
+          }
+        }
+
+        stage (" Docker Publish "){
+            steps {
+                script {
+                   echo '<--------------- Docker Publish Started --------------->'  
+                    docker.withRegistry(registry, 'dockercredentialid'){
+                        app.push()
+                    }    
+                   echo '<--------------- Docker Publish Ended --------------->'  
+                }
+            }
         }             
     }
 }
