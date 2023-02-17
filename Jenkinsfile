@@ -87,7 +87,7 @@ pipeline{
             steps {
                 script {
                    echo '<--------------- Docker Publish Started --------------->'  
-                    docker.withRegistry(registry, 'jfrog-sonar'){
+                    docker.withRegistry(registry, '	maven-docker'){
                         app.push()
                     }    
                    echo '<--------------- Docker Publish Ended --------------->'  
