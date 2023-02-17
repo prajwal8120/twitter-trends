@@ -51,7 +51,7 @@ pipeline{
             steps {
                 script {
                         echo '<--------------- Jar Publish Started --------------->'
-                         def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"maven-docker"
+                         def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"jfrog-key"
                          def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                          def uploadSpec = """{
                               "files": [
@@ -87,7 +87,7 @@ pipeline{
             steps {
                 script {
                    echo '<--------------- Docker Publish Started --------------->'  
-                    docker.withRegistry(registry, 'maven-docker'){
+                    docker.withRegistry(registry, 'jfrog-key'){
                         app.push()
                     }    
                    echo '<--------------- Docker Publish Ended --------------->'  
