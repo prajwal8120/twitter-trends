@@ -1,6 +1,6 @@
 def imageName = 'admirals.jfrog.io/tycoon-doc-docker/valaxy'
 def registry  = 'https://admirals.jfrog.io'
-def version = '2.0.4'
+def version = '2.0.3'
 pipeline{
     agent {
         label 'slave-java'
