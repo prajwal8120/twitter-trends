@@ -17,6 +17,7 @@ pipeline{
                 echo "<----------Build completed---------->"
             }
         }
+/*
         stage ("Sonar Analysis") {
             environment {
                scannerHome = tool 'sonar-scanner'
@@ -45,6 +46,7 @@ pipeline{
                 }    
             }   
         }
+*/
         stage("Jar Publish") {
             steps {
                 script {
