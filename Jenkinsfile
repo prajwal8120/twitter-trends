@@ -87,7 +87,7 @@ pipeline{
             steps {
                 script {
                    echo '<--------------- Docker Publish Started --------------->'  
-                    docker.withRegistry(registry, "jfrog-key"){
+                    docker.withRegistry(registry, 'jfrog-key'){
                         app.push()
                     }    
                    echo '<--------------- Docker Publish Ended --------------->'  
